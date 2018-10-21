@@ -1,0 +1,12 @@
+= Introduction
+
+This is my attempt to re-create the
+https://twitter.com/stranger_things/status/898307224979742720[Christmas
+light, message wall from Stranger Things]. This is a popular project
+on the Interwebs, but it is usually done using an Arduino.
+
+This project features:
+
+* [x] A bare bones ATmega328p AVR (no Arduino ecosystem)
+* [x] Python to send tweets to the AVR over serial UART
+* [x] Random flashes -- to warn you when the Demogorgon is near

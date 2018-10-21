@@ -1,0 +1,5 @@
+name: stranger-lights
+title: Stranger Things Lights
+version: latest
+nav:
+- modules/ROOT/nav.adoc
