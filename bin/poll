@@ -1,24 +1,24 @@
 #!/bin/bash
-# Search Twitter and send results to serial.py. Uses twurl[1] to
+# Search Twitter and send results to upsidedown.py. Uses twurl[1] to
 # search the Twitter API[2].
 #
 # [1]: https://github.com/twitter/twurl
 # [2]: https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
 
-HASHTAG="%23StrangerThings"  # = %23
-LOGFILE=".since_id"
+HASHTAG="%23stetr"  # %23 = hash tag symbol
+IDFILE=".since_id"
 USERFILE="users.txt"
 
 while true; do
-    since_id=`cat $LOGFILE`
+    since_id=`cat $IDFILE`
     timestamp=`date`
 
     echo "##################################################"
     echo "$timestamp ($since_id)"
     echo "##################################################"
 
-    twurl "/1.1/search/tweets.json?q=${HASHTAG}&result_type=recent&since_id=${since_id}" | ./serial.py -l $LOGFILE -t -u $USERFILE
+    twurl "/1.1/search/tweets.json?q=${HASHTAG}&result_type=recent&since_id=${since_id}" | ./upsidedown.py -i $IDFILE -t -u $USERFILE
 
     echo
-    sleep 10s  # 180 requests / 15-min window
+    sleep 5s  # 180 requests / 15-min window
 done

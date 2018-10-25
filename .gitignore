@@ -1,1 +1,4 @@
 docs/build/site/
+bin/.since_id
+bin/users.txt
+__pycache__
