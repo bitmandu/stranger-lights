@@ -11,4 +11,4 @@ This project features:
 
 * [x] A bare bones ATmega328 AVR (no Arduino ecosystem)
 * [x] Command-line scripts to send tweets to the AVR over serial UART
-* [x] Random flashes -- to warn you when the Demogorgon is near
+* [x] Random flashes -- to warn you when the Demogorgon is nearby

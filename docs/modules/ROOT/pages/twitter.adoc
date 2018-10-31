@@ -4,8 +4,8 @@
 :twitter-apply: https://developer.twitter.com/en/apply-for-access
 https://github.com/twitter/twurl#getting-started
 
-The script `bin/poll` is used to retrieve recent tweets containing a
-hashtag and display them.
+The script `bin/poll` retrieves recent tweets containing a hashtag and
+displays them.
 
 == Step 1: Prerequisites
 
@@ -13,10 +13,10 @@ hashtag and display them.
 - [*] Install {twurl}[Twurl]
 
 Twurl is a command-line tool (like curl) that is tailored for the
-Twitter API. Once you have a Twitter developer account, you can your
+Twitter API. From your Twitter developer account, you can get a
 consumer key and its secret key to make API requests with Twurl.
 
-To setup Twurl following the {twurl-getting-started}[Getting Started]
+Setup Twurl following the {twurl-getting-started}[Getting Started]
 directions.
 
 == Step 2: Choose a Hashtag
@@ -38,5 +38,5 @@ $ ./poll
 ----
 
 Tweets are retrieved at most every 5 seconds. If no recent tweets are
-found, a random message is displayed or the lights will flash,
+found, a random message is displayed or the lights will all flash,
 indicating the Demogorgon is nearby!

@@ -16,8 +16,8 @@ are two other options.
 
 Although upsidedown.py tries to determine your serial port (COM port),
 if you have a lot of serial devices attached to your computer it may
-wrong. To list the available serial devices on your computer use the
-`-l` flag.
+be wrong. To list the available serial devices on your computer use
+the `-l` flag.
 
 [source, shell]
 ----

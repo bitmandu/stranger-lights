@@ -9,8 +9,8 @@ an Arduino.
 This project features:
 
 - A bare bones ATmega328 AVR (no Arduino ecosystem)
-- Command-line scripts to send messages tweets to the AVR over serial UART
-- Random flashes -- to warn you when the Demogorgon is near
+- Command-line scripts to send tweets to the AVR over serial UART
+- Random flashes — to warn you when the Demogorgon is nearby
 
 This [video shows stranger-lights in action][youtube].
 
@@ -37,7 +37,7 @@ To display your own message, just add it to the command-line.
 
     $ ./upsidedown.py stranger lights
 
-The special message `~` is used to flash the LEDs -- warning that the
+The special message `~` is used to flash the LEDs — warning that the
 Demogorgon is nearby.
 
     $ ./upsidedown.py ~
@@ -52,8 +52,8 @@ display tweets containing a hashtag.
 Documentation
 -------------
 
-Instructions on setting up the hardware and software are available in
-the [documentation][docs].
+Step-by-step instructions on setting up the hardware and software are
+available in the [documentation][docs].
 
 Help / Issues
 -------------
