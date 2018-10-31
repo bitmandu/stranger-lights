@@ -1,2 +1,8 @@
 - xref:index.adoc[Introduction]
 - xref:materials.adoc[Materials]
+- xref:hardware.adoc[Connecting the Hardware]
+- xref:clock.adoc[Changing the ATmega328 Clock Speed to 8 MHz]
+- xref:software.adoc[Flashing the Software]
+- xref:upsidedown.adoc[Sending Messages with upsidedown.py]
+- xref:twitter.adoc[Displaying Tweets]
+- xref:license.adoc[License]
