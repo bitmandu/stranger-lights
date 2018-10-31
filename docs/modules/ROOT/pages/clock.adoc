@@ -1,0 +1,134 @@
+= Changing the ATmega328 Clock Speed to 8 MHz
+:ws2811: https://github.com/DannyHavenith/ws2811
+:datasheet: http://ww1.microchip.com/downloads/en/devicedoc/atmel-42735-8-bit-avr-microcontroller-atmega328-328p_datasheet.pdf
+
+By default, the ATmega328 runs at 1 MHz. Because the bit-banging
+performed by {ws2811}[Danny Havenith's ws2811 library] is timing
+senitive, the AVR needs to run at a clock speed of 8 MHz.
+
+== Step 1: Check the clock speed
+
+The clock speed is controlled by the low fuse byte (LFUSE). Use
+AVRDUDE to check LFUSE for your chip.
+
+[source, shell]
+----
+$ avrdude -c usbasp -p atmega328p -v
+
+avrdude: Version 6.3, compiled on Feb  7 2018 at 03:33:11
+         Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
+         Copyright (c) 2007-2014 Joerg Wunsch
+
+...
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1e950f (probably m328p)
+avrdude: safemode: hfuse reads as D9
+avrdude: safemode: efuse reads as FF
+
+avrdude: safemode: hfuse reads as D9
+avrdude: safemode: efuse reads as FF
+avrdude: safemode: Fuses OK (E:FF, H:D9, L:62) <1>
+
+avrdude done.  Thank you.
+----
+<1> `L:62` is the low fuse byte. (In hexidecimal, 0x62 = 0b01100010.)
+
+If your chip reports `L:62`, the clock is running at 1 MHz and you
+need to perform the next step.
+
+.More on the low fuse byte (LFUSE)
+****
+
+The bits `CKDIV8` and `CKSEL` of LFUSE control the clock speed of the
+ATmega238. (See pages 349-350 of the {datasheet}[datasheet].)
+
+.Default LFUSE
+[%header,cols=8]
+|===
+| CKDIV8 | CKOUT | SUT1 | SUT0 | CKSEL3 | CKSEL2 | CKSEL1 | CKSEL0
+|      0 |     1 |    1 |    0 |      0 |      0 |      1 |      0
+|===
+
+The default value of LFUSE = 0b01100010 = 0x62, where the components
+are:
+
+CKDIV8::
+Divide clock by 8
+
+CKOUT::
+Clock output
+
+SUT::
+Select start-up time
+
+CKSEL::
+Select clock source
+
+Although `CKSEL` = 0b0010 corresponds to 8 MHz, because `CKDIV` is
+programmed the clock speed is divided by 8 -- which results in the
+default 1 MHz clock speed from the factory.
+
+NOTE: In AVR lingo, fuses that are read as logical zero (0) are
+"programmed."
+
+To set the clock speed at 8 MHz, all that is needed is to leave
+`CKDIV8` unprogrammed (1) so the `CLKPS` bits will be reset to 0000.
+
+.LFUSE for an 8 MHz clock
+[%header,cols=8]
+|===
+| CKDIV8 | CKOUT | SUT1 | SUT0 | CKSEL3 | CKSEL2 | CKSEL1 | CKSEL0
+|      1 |     1 |    1 |    0 |      0 |      0 |      1 |      0
+|===
+
+This sets the clock division factor to 1, and the ATmega328 will run
+at 8 MHz. Because 0b11100010 = 0xe2, we want to set LFUSE = 0xe2.
+****
+
+== Step 2: Change the clock speed using AVRDUDE
+
+To rewrite LFUSE = 0xe2 using avrdude:
+
+[source, shell]
+----
+$ avrdude -c usbasp -p atmega328p -v -U lfuse:w:0xe2:m
+
+avrdude: Version 6.3, compiled on Jul 12 2018 at 21:00:17
+         Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
+         Copyright (c) 2007-2014 Joerg Wunsch
+
+...
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1e950f (probably m328p)
+avrdude: safemode: hfuse reads as D9
+avrdude: safemode: efuse reads as FF
+avrdude: reading input file "0xe2"
+avrdude: writing lfuse (1 bytes):
+
+Writing | ################################################## | 100% 0.01s
+
+avrdude: 1 bytes of lfuse written
+avrdude: verifying lfuse memory against 0xe2:
+avrdude: load data lfuse data from input file 0xe2:
+avrdude: input file 0xe2 contains 1 bytes
+avrdude: reading on-chip lfuse data:
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: verifying ...
+avrdude: 1 bytes of lfuse verified
+
+avrdude: safemode: hfuse reads as D9
+avrdude: safemode: efuse reads as FF
+avrdude: safemode: Fuses OK (E:FF, H:D9, L:E2)
+
+avrdude done.  Thank you.
+----

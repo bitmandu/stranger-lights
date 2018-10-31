@@ -1,0 +1,42 @@
+= Sending Messages from Twitter
+:twurl: https://github.com/twitter/twurl
+:twurl-getting-started: https://github.com/twitter/twurl#getting-started
+:twitter-apply: https://developer.twitter.com/en/apply-for-access
+https://github.com/twitter/twurl#getting-started
+
+The script `bin/poll` is used to retrieve recent tweets containing a
+hashtag and display them.
+
+== Step 1: Prerequisites
+
+- [*] Create a {twitter-apply}[Twitter developer account]
+- [*] Install {twurl}[Twurl]
+
+Twurl is a command-line tool (like curl) that is tailored for the
+Twitter API. Once you have a Twitter developer account, you can your
+consumer key and its secret key to make API requests with Twurl.
+
+To setup Twurl following the {twurl-getting-started}[Getting Started]
+directions.
+
+== Step 2: Choose a Hashtag
+
+Edit `bin/poll` with the hashtag you want to search for. I chose
+`#stetr`.
+
+[source, shell]
+----
+HASHTAG="stetr"
+----
+
+== Step 3: Display Tweets
+
+[source, shell]
+----
+$ cd bin
+$ ./poll
+----
+
+Tweets are retrieved at most every 5 seconds. If no recent tweets are
+found, a random message is displayed or the lights will flash,
+indicating the Demogorgon is nearby!

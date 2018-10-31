@@ -1,0 +1,46 @@
+= Sending Messages with upsidedown.py
+:screen: https://www.gnu.org/software/screen/manual/screen.html
+:miniterm: https://pyserial.readthedocs.io/en/latest/tools.html#module-serial.tools.miniterm
+
+Any string received by the UART interface of the AVR is displayed.
+(Assuming, you know, everything is working.)
+
+You can use whatever serial terminal you prefer to send messages. The
+Linux command {screen}[screen] and Python's pySerial
+{miniterm}[miniterm console] are two options.
+
+The Python script `bin/upsidedown.py` sends serial messages from the
+command line.
+
+.Determine your serial device
+****
+To use upsidedown.py you need to determine the device name of your
+serial device. Available serial devices can be found with:
+
+[source, shell]
+----
+$ ./upsidedown.py -l
+----
+
+On Linux, my serial device is `/dev/ttyUSB0`. You should substitute
+your own serial device in the examples below.
+****
+
+== Send a random message
+
+Without any other command line arguments, upsidedown.py will send a
+random message like "run."
+
+[source, shell]
+----
+$ ./upsidedown.py -d /dev/ttyUSB0
+----
+
+== Send a custom message
+
+To display your own message, just add it to the command line.
+
+[source, shell]
+----
+$ ./upsidedown.py -d /dev/ttyUSB0 stranger lights
+----

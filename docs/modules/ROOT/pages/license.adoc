@@ -1,0 +1,19 @@
+= License
+:repo: https://github.com/bitmandu/stranger-lights
+:ws2811: https://github.com/DannyHavenith/ws2811
+:mit: https://github.com/bitmandu/stranger-lights/blob/master/LICENSE
+:boost: https://github.com/DannyHavenith/ws2811/blob/master/LICENSE_1_0.txt
+:cc-by-sa: http://creativecommons.org/licenses/by-sa/4.0/
+
+== Software
+
+The {repo}[source code] is licensed under the {mit}[MIT License],
+*except* for {ws2811}[Danny Havenith's ws2811 library] which is
+licensed under the {boost}[Boost Software License 1.0].
+
+== Documentation
+
+image:https://i.creativecommons.org/l/by-sa/4.0/88x31.png[Creative Commons License]
+
+The documentation is licensed under the {cc-by-sa}[Creative Commons
+Attribution-ShareAlike 4.0 International License].
