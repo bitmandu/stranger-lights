@@ -13,7 +13,9 @@ import time
 BAUD = 9600  # serial port baud rate
 
 # random messages selected from:
-MESSAGES = ["boo", "halloween", "help", "redrum", "run", "trick or treat"]
+MESSAGES = ["barb", "boo", "halloween", "help", "redrum", "run", "trick or treat"]
+
+NTRUNC = 32
 
 def clean(tweet):
     """Clean tweet of special characters, hash tags, user names, etc."""
@@ -26,7 +28,15 @@ def clean(tweet):
         words.append(w.strip().lower())
 
     message = re.sub(r"[^a-z ]", "", " ".join(words))
-    return message
+    message = re.sub(r"\s+", " ", message)
+    print(tweet, message)
+
+    return message.strip()
+
+def comport():
+    """Default serial device."""
+
+    return list_ports.comports()[0].device
 
 def parse(results, userfile):
     """Parse Twitter search results from twurl."""
@@ -57,12 +67,22 @@ def ports():
     for port in list_ports.comports():
         print("{0.device:40}{0.description:30}".format(port))
 
+def send(port, message):
+    """Send message to serial port."""
+
+    message = message[:NTRUNC]
+    delay = 2*len(message)  # delay (in sec) to wait for message to display
+
+    print("send: '{}' ({} s)".format(message, delay))
+    port.write("{}\r\n".format(message).encode("utf-8"))
+    time.sleep(delay)
+
 if __name__ == "__main__":
     p = argparse.ArgumentParser(prog="upsidedown.py", description=__doc__)
     p.add_argument("-b", "--baud", dest="baud", type=int, default=9600,
                    help="Baud rate")
     p.add_argument("-d", "--device", dest="device", type=str,
-                   default="/dev/ttyUSB0", help="Serial port device")
+                   default=comport(), help="Serial port device")
     p.add_argument("-i", "--id", dest="idfile", type=str,
                    help="Filename to store latest tweet ID")
     p.add_argument("-l", "--list", dest="list", action="store_true",
@@ -88,12 +108,18 @@ if __name__ == "__main__":
             with open(args.idfile, "w") as fp:
                 fp.write("{}".format(since_id))
     elif args.message:
-        messages = [re.sub(r"[^a-z ]", "", " ".join(args.message))]
+        messages = [re.sub(r"[^~a-z ]", "", " ".join(args.message))]
     else:
         messages = [random.choice(MESSAGES)]
 
     with serial.Serial(args.device, args.baud, timeout=5) as port:
-        for msg in messages:
-            print("send: '{}'".format(msg))
-            port.write("{}\n".format(msg).encode("utf-8"))
-            time.sleep(2*len(msg))
+        if not messages:
+            r = random.random()
+            if r < 0.4:
+                print("flash")
+                port.write("~\r\n".encode("utf-8"))
+            elif r < 0.8:
+                send(port, random.choice(MESSAGES))
+        else:
+            for msg in messages:
+                send(port, msg)
