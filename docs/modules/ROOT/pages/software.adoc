@@ -1,1 +1,123 @@
-= Installing the Software
+= Flashing the software
+
+== Step 1: Configuration
+
+There are a few files to edit before flashing the code to the AVR.
+
+=== `src/ledstrip.h`
+
+Change `NLED` to the number of LEDs for your strip.
+
+[source, c]
+----
+#define NLED 50
+----
+
+=== `src/ledstrip.c`
+
+The variable `MAP` defines which LED corresponds to each letter. For
+example, `MAP[0]` is the LED index for letter "A," and `MAP[25]` is
+the LED index for "Z." The LEDs in the strip are numbered from 0 to
+`NLED - 1`.
+
+In my setup, the last LED in the 50 LED strip (LED 49) is above the
+letter "A," so my `MAP` is as follows.
+
+[source, c]
+----
+static const uint8_t MAP[26] = {
+    49, 48, 47, 46, 45, 44, 43, 42,
+    32, 33, 34, 35, 36, 37, 38, 39, 40,
+    30, 29, 28, 27, 26, 25, 24, 23, 22};
+----
+
+In addition, the variable `COLOR` defines the color for each LED. In
+my setup, I only use the last 28 LEDs so I set `COLOR` as follows.
+
+[source, c]
+----
+static const rgb COLOR[NLED] = {
+    BLACK, BLACK, BLACK, BLACK, BLACK,
+    BLACK, BLACK, BLACK, BLACK, BLACK,
+    BLACK, BLACK, BLACK, BLACK, BLACK,
+    BLACK, BLACK, BLACK, BLACK, BLACK,
+    BLACK, BLACK, GREEN, BLUE, RED,
+    BLUE, YELLOW, LAVENDER, GREEN, PURPLE,
+    BLUE, RED, YELLOW, LAVENDER, GREEN,
+    PURPLE, BLUE, RED, YELLOW, LAVENDER,
+    GREEN, PURPLE, BLUE, RED, YELLOW,
+    LAVENDER, GREEN, PURPLE, BLUE, RED};
+----
+
+NOTE: `rgb.h` defines the colors APRICOT, AQUA, BLACK, BLUE, BROWN,
+CYAN. FUCHSIA, GRAY, GREEN, LAVENDER, LIME, MAGENTA, MAROON, MINT,
+NAVY, OLIVE, ORANGE, PINK, PURPLE, RED, SILVER, TEAL, WHITE, and
+YELLOW.
+
+=== `src/pins.h`
+
+If you connect your LED strip to a different pin, you will also have
+to update `pins.h`.
+
+[source, c]
+----
+#define WS2811_PORT PORTB
+#define DDR DDRB
+#define PIN PB1
+----
+
+== Step 2: Compile the code
+
+Compile with the avr-gcc compiler using `make`.
+
+[source, shell]
+----
+$ make
+avr-gcc -g -Wall -Wpedantic -Os -DF_CPU=8000000UL -DBAUD=9600UL -mmcu=atmega328p -c -o stranger-lights.o stranger-lights.c
+avr-gcc -g -Wall -Wpedantic -Os -DF_CPU=8000000UL -DBAUD=9600UL -mmcu=atmega328p -c -o ledstrip.o ledstrip.c
+avr-gcc -g -Wall -Wpedantic -Os -DF_CPU=8000000UL -DBAUD=9600UL -mmcu=atmega328p -c -o usart.o usart.c
+avr-gcc -Wl,-Map,.map -mmcu=atmega328p -o stranger-lights.elf stranger-lights.o ledstrip.o usart.o
+----
+
+== Step 3: Flash the AVR
+
+Flash the AVR with avrdude using `make flash`.
+
+[source, shell]
+----
+$ make flash
+avr-objcopy -j .text -j .data -O ihex stranger-lights.elf stranger-lights.hex
+avrdude -c usbasp -p atmega328p -U flash:w:stranger-lights.hex
+
+avrdude: warning: cannot set sck period. please check for usbasp firmware update.
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1e950f (probably m328p)
+avrdude: NOTE: "flash" memory has been specified, an erase cycle will be performed
+         To disable this feature, specify the -D option.
+avrdude: erasing chip
+avrdude: warning: cannot set sck period. please check for usbasp firmware update.
+avrdude: reading input file "stranger-lights.hex"
+avrdude: input file stranger-lights.hex auto detected as Intel Hex
+avrdude: writing flash (3650 bytes):
+
+Writing | ################################################## | 100% 1.14s
+
+avrdude: 3650 bytes of flash written
+avrdude: verifying flash memory against stranger-lights.hex:
+avrdude: load data flash data from input file stranger-lights.hex:
+avrdude: input file stranger-lights.hex auto detected as Intel Hex
+avrdude: input file stranger-lights.hex contains 3650 bytes
+avrdude: reading on-chip flash data:
+
+Reading | ################################################## | 100% 0.95s
+
+avrdude: verifying ...
+avrdude: 3650 bytes of flash verified
+
+avrdude: safemode: Fuses OK (E:FF, H:D9, L:E2)
+
+avrdude done.  Thank you.
+----

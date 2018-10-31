@@ -2,45 +2,62 @@
 :screen: https://www.gnu.org/software/screen/manual/screen.html
 :miniterm: https://pyserial.readthedocs.io/en/latest/tools.html#module-serial.tools.miniterm
 
-Any string received by the UART interface of the AVR is displayed.
-(Assuming, you know, everything is working.)
-
-You can use whatever serial terminal you prefer to send messages. The
-Linux command {screen}[screen] and Python's pySerial
-{miniterm}[miniterm console] are two options.
-
 The Python script `bin/upsidedown.py` sends serial messages from the
-command line.
+command-line.
 
-.Determine your serial device
+Any string received by the UART interface of the AVR is displayed.
+(Assuming, you know, everything is working.) You can use whatever
+serial terminal you prefer to send messages. The Linux command
+{screen}[screen] and Python's pySerial {miniterm}[miniterm console]
+are two other options.
+
+.Determine your serial port
 ****
-To use upsidedown.py you need to determine the device name of your
-serial device. Available serial devices can be found with:
+
+Although upsidedown.py tries to determine your serial port (COM port),
+if you have a lot of serial devices attached to your computer it may
+wrong. To list the available serial devices on your computer use the
+`-l` flag.
 
 [source, shell]
 ----
 $ ./upsidedown.py -l
+Device                                  Description
+----------------------------------------------------------------------
+/dev/ttyUSB0                            FT232R USB UART
 ----
 
-On Linux, my serial device is `/dev/ttyUSB0`. You should substitute
-your own serial device in the examples below.
+On Linux, my serial device is `/dev/ttyUSB0`. If the default serial
+port isn't working, use the `-d` flag to provide an alternative, e.g.,
+`-d /dev/ttyUSB0`.
+
 ****
 
 == Send a random message
 
-Without any other command line arguments, upsidedown.py will send a
+Without any other command-line arguments, upsidedown.py will send a
 random message like "run."
 
 [source, shell]
 ----
-$ ./upsidedown.py -d /dev/ttyUSB0
+$ ./upsidedown.py
 ----
 
 == Send a custom message
 
-To display your own message, just add it to the command line.
+To display your own message, just add it to the command-line.
 
 [source, shell]
 ----
-$ ./upsidedown.py -d /dev/ttyUSB0 stranger lights
+$ ./upsidedown.py stranger lights
+----
+
+== Flash the LEDs
+
+The special message `~` can be used to flash the LEDs -- warning that
+the Demogorgon is nearby.
+
+[source, shell]
+----
+$ ./upsidedown.py ~
 ----
