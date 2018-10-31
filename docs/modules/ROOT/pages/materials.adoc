@@ -1,20 +1,28 @@
 = Materials
+:avr: https://www.mouser.com/ProductDetail/Microchip-Technology-Atmel/ATMEGA328-PU?qs=sGAEpiMZZMuHCAZ7U3Ea2vH90mYkP45F
+:lights: https://www.aliexpress.com/item/50nodes-addressable-RGB-C9-DC12V-WS2811-LED-Christmas-pixel-string-light-6inches-15cm-wire-spacing-all/32463619267.html
+:power-supply: https://www.amazon.com/gp/product/B01AZLA9XQ/
+:letters-pdf: https://www.witchesofhalloween.com.au/content/Stranger%20Things%20-%20Wall%20Letters.pdf
+:letters-font: https://www.dafont.com/kg-life-is-messy.font
+:led-control-chips: http://www.doityourselfchristmas.com/wiki/index.php?title=Different_Styles_of_Pixels#Pixel_.28IC.29Control_chips_and_number_of_wires
 
 * Electronics
-** [x] https://www.mouser.com/ProductDetail/Microchip-Technology-Atmel/ATMEGA328-PU?qs=sGAEpiMZZMuHCAZ7U3Ea2vH90mYkP45F[ATMega328-PU]
-** [x] https://www.aliexpress.com/item/50nodes-addressable-RGB-C9-DC12V-WS2811-LED-Christmas-pixel-string-light-6inches-15cm-wire-spacing-all/32463619267.html[LED Christmas Lights (WS2811, 12V)]
-** [x] https://www.amazon.com/gp/product/B01AZLA9XQ/[12V Power supply]
+** [x] {avr}[ATMega328-PU]
+** [x] {lights}[LED Christmas Lights (WS2811, 12V)]
+** [x] {power-supply}[12V Power supply]
+** [x] FTDI Serial-USB Cable
+** [x] Flash Programmer
 * Craft Supplies
 ** [x] Floral wallpaper, shelf liner, or fabric
-** [x] Push pins (to hang the lights)
-** [x] Paint for the letters -- or print letters using https://www.witchesofhalloween.com.au/content/Stranger%20Things%20-%20Wall%20Letters.pdf[this template] or the https://www.dafont.com/kg-life-is-messy.font[KG Life is Messy Font]
+** [x] Safety pins (to hang the lights)
+** [x] Paint for the letters -- or print letters using
+   {letters-pdf}[this template] or the {letters-font}[KG Life is Messy Font]
 
 // another source for "Stranger Things Wall Letters.pdf" (account required)
 // https://www.scribd.com/document/345729391/Stranger-Things-Wall-Letters-pdf
 
-IMPORTANT: To use my code, you'll need to use a WS2811-based LED
-strip. There are a few different ICs commonly used including the
-WS2811, WS2812, and WS2812b, so doublecheck. To learn more about the
-different ICs being used in LED pixel strips, see
-http://www.doityourselfchristmas.com/wiki/index.php?title=Different_Styles_of_Pixels#Pixel_.28IC.29Control_chips_and_number_of_wires[Different
+IMPORTANT: To use my code, you'll need a WS2811-based LED strip. There
+are several ICs commonly used with LEDs including the WS2811, WS2812,
+and WS2812b, so double-check. To learn more about the different ICs
+being used in LED pixel strips, see {led-control-chips}[Different
 Styles of Pixels].
