@@ -1,4 +1,4 @@
-= Sending Messages from Twitter
+= Displaying Tweets
 :twurl: https://github.com/twitter/twurl
 :twurl-getting-started: https://github.com/twitter/twurl#getting-started
 :twitter-apply: https://developer.twitter.com/en/apply-for-access
