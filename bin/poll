@@ -5,7 +5,7 @@
 # [1]: https://github.com/twitter/twurl
 # [2]: https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets
 
-HASHTAG="%23stetr"  # %23 = hash tag symbol
+HASHTAG="stetr"
 IDFILE=".since_id"
 USERFILE="users.txt"
 
@@ -17,7 +17,7 @@ while true; do
     echo "$timestamp ($since_id)"
     echo "##################################################"
 
-    twurl "/1.1/search/tweets.json?q=${HASHTAG}&result_type=recent&since_id=${since_id}" | ./upsidedown.py -i $IDFILE -t -u $USERFILE
+    twurl "/1.1/search/tweets.json?q=%23${HASHTAG}&result_type=recent&since_id=${since_id}" | ./upsidedown.py -i $IDFILE -t -u $USERFILE
 
     echo
     sleep 5s  # 180 requests / 15-min window
