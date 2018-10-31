@@ -8,13 +8,14 @@
 #include <string.h>
 #include <util/delay.h>
 #include "ledstrip.h"
-#include "pinout.h"
+#include "pins.h"
 #include "rgb.h"
 #include "ws2811.h"
 
-static const uint8_t MAP[26] = {49, 48, 47, 46, 45, 44, 43, 42,
-                                32, 33, 34, 35, 36, 37, 38, 39, 40,
-                                30, 29, 28, 27, 26, 25, 24, 23, 22};
+static const uint8_t MAP[26] = {
+    49, 48, 47, 46, 45, 44, 43, 42,
+    32, 33, 34, 35, 36, 37, 38, 39, 40,
+    30, 29, 28, 27, 26, 25, 24, 23, 22};
 
 static const rgb COLOR[NLED] = {
     BLACK, BLACK, BLACK, BLACK, BLACK,

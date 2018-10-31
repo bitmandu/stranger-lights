@@ -1,5 +1,5 @@
 /**
- * @file pinout.h
+ * @file pins.h
  *
  * Pin definitions.
  */

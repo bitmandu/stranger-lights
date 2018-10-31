@@ -1,5 +1,5 @@
 /**
- * strlights.c
+ * stranger-lights.c
  *
  * Stranger things alphabet message wall.
  */
@@ -10,7 +10,7 @@
 #include <util/delay.h>
 #include "ledstrip.h"
 #include "rgb.h"
-#include "pinout.h"
+#include "pins.h"
 #include "usart.h"
 
 #define MSG_SIZE 64
