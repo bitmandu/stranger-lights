@@ -54,8 +54,8 @@ $ ./upsidedown.py stranger lights
 
 == Flash the LEDs
 
-The special message `~` can be used to flash the LEDs -- warning that
-the Demogorgon is nearby.
+The special message `~` is used to flash the LEDs -- warning that the
+Demogorgon is nearby.
 
 [source, shell]
 ----

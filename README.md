@@ -28,19 +28,24 @@ Serial messages are read over the serial port and displayed.
 
 The script `bin/upsidedown.py` sends serial messages to display.
 
-Without any command line arguments, upsidedown.py sends a random
+Without any command-line arguments, upsidedown.py sends a random
 message like "run."
 
     $ ./upsidedown.py
 
-To display your own message, just add it to the command line.
+To display your own message, just add it to the command-line.
 
     $ ./upsidedown.py stranger lights
+
+The special message `~` is used to flash the LEDs -- warning that the
+Demogorgon is nearby.
+
+    $ ./upsidedown.py ~
 
 ### Displaying Tweets
 
 The script `bin/poll` uses [Twurl][twurl] to periodically retrieve and
-display tweets contining a hashtag.
+display tweets containing a hashtag.
 
     $ ./poll
 
