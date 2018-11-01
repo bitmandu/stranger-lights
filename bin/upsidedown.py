@@ -29,14 +29,18 @@ def clean(tweet):
 
     message = re.sub(r"[^a-z ]", "", " ".join(words))
     message = re.sub(r"\s+", " ", message)
-    print(tweet, message)
 
     return message.strip()
 
 def comport():
     """Default serial device."""
 
-    return list_ports.comports()[0].device
+    try:
+        port = list_ports.comports()[0].device
+    except IndexError:
+        port = None
+
+    return port
 
 def parse(results, userfile):
     """Parse Twitter search results from twurl."""
@@ -115,10 +119,10 @@ if __name__ == "__main__":
     with serial.Serial(args.device, args.baud, timeout=5) as port:
         if not messages:
             r = random.random()
-            if r < 0.4:
+            if r < 0.6:
                 print("flash")
                 port.write("~\r\n".encode("utf-8"))
-            elif r < 0.8:
+            else:
                 send(port, random.choice(MESSAGES))
         else:
             for msg in messages:
