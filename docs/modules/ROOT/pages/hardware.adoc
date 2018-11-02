@@ -1,9 +1,9 @@
 = Connecting the Hardware
 
 The hardware setup is straightforward. There is only one output pin to
-the LED strip to connect from PB1 (pin 15, defined in `pins.h`).
+the LED strip to connect from PB1 (pin 15, defined in pins.h).
 
-image::fritzing.jpg[Breadboard visualized with Fritzing,800]
+image::fritzing.jpg[Breadboard visualized with Fritzing, width=640]
 
 IMPORTANT: Make sure to connect the ground wires from the LEDs and AVR
 together. Otherwise the digital signal output from the AVR will be
@@ -11,7 +11,7 @@ floating, and your lights will flicker randomly.
 
 Here is what it looks like on my breadboard.
 
-image::breadboard.jpg[Breadboard in real-life, 800]
+image::breadboard.jpg[Breadboard in real-life, width=640]
 
 == LED Connection
 
@@ -20,9 +20,9 @@ The power rails (12 V and ground) are connected to the AC/DC power
 supply. The ground wire and data wire need to be routed back to the
 AVR.
 
-image::led-connector.jpg[LED Connector, 800]
+image::led-connector.jpg[LED Connector, width=640]
 
 == AVR Power
 
-I used my flash programmer to power the AVR. But once you program it,
-the programmer can be removed and replaced with any 5 V power supply.
+I used my programmer to power the AVR. But once you flash the AVR, the
+programmer can be removed and replaced with any 5 V power supply.
