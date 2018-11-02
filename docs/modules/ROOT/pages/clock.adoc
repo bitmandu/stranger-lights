@@ -8,8 +8,8 @@ senitive, the AVR needs to run at a clock speed of 8 MHz.
 
 == Step 1: Check the clock speed
 
-The clock speed is controlled by the low fuse byte (LFUSE). Use
-avrdude to check LFUSE for your chip.
+The clock speed is controlled by the low fuse byte (LFUSE). Its value
+can be found with avrdude.
 
 [source, shell]
 ----
@@ -37,7 +37,7 @@ avrdude done.  Thank you.
 ----
 <1> `L:62` is the low fuse byte. (In hexidecimal, 0x62 = 0b01100010.)
 
-If your chip reports `L:62`, the clock is running at 1 MHz and you
+If your chip reports `L:62`, its clock is running at 1 MHz and you
 need to perform the next step.
 
 .More on the low fuse byte (LFUSE)
@@ -90,6 +90,8 @@ at 8 MHz. Because 0b11100010 = 0xe2, we want to set LFUSE = 0xe2.
 ****
 
 == Step 2: Change the clock speed using avrdude
+
+Use avrdude to set LFUSE = 0xe2 and run the ATmega328 at 8 MHz.
 
 [source, shell]
 ----

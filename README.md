@@ -1,4 +1,4 @@
-stranger-lights
+Stranger Lights
 ===============
 
 This is my attempt to recreate the
@@ -12,7 +12,7 @@ This project features:
 - Command-line scripts to send tweets to the AVR over serial UART
 - Random flashes — to warn you when the Demogorgon is nearby
 
-This [video shows stranger-lights in action][youtube].
+This [video shows Stranger Lights in action][youtube].
 
 Getting Started
 ---------------
@@ -37,8 +37,8 @@ To display your own message, just add it to the command-line.
 
     $ ./upsidedown.py stranger lights
 
-The special message `~` is used to flash the LEDs — warning that the
-Demogorgon is nearby.
+The special message "~" flashes the LEDs — warning that the Demogorgon
+is nearby.
 
     $ ./upsidedown.py ~
 
@@ -64,9 +64,8 @@ Please report all bugs and feature requests using the
 License
 -------
 
-[MIT](LICENSE) ***except*** for
-[Danny Havenith's ws2811 library][ws2811] which is licensed under the
-[Boost Software License 1.0][boost].
+[MIT](LICENSE), *except* for [Danny Havenith's ws2811 library][ws2811]
+which is licensed under the [Boost Software License 1.0][boost].
 
 
 [boost]: https://github.com/DannyHavenith/ws2811/blob/master/LICENSE_1_0.txt
