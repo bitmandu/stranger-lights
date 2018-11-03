@@ -1,7 +1,7 @@
 /**
- * stranger-lights.c
+ * @file stranger-lights.c
  *
- * Stranger things alphabet message wall.
+ * Stranger Things alphabet message wall.
  */
 
 #include <avr/io.h>
@@ -25,7 +25,7 @@ int main(void)
     rgb *leds;
     leds = (rgb *) calloc(sizeof(rgb), NLED);
 
-    printf("--[ stranger-lights v1.0 ]--\r\n");
+    printf("--[ stranger-lights ]--\r\n");
 
     for (;;)
     {

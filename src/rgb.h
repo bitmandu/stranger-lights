@@ -1,8 +1,10 @@
 /**
  * @file rgb.h
+ *
+ * RGB color data types and definitions.
  */
 
-# pragma once
+#pragma once
 
 #include <avr/io.h>
 
