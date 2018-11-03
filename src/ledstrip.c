@@ -1,7 +1,7 @@
 /**
  * @file ledstrip.c
  *
- * Functions to constrol the LED strip.
+ * Functions to control the LED strip.
  */
 
 #include <avr/io.h>
@@ -67,15 +67,13 @@ void display(rgb *leds, uint16_t n, char *message)
  */
 void flash(rgb *leds, uint16_t n)
 {
-    for (uint8_t k = 0; k < 3; ++k) {
-        for (uint8_t i = 0; i < n; ++i) {
-            leds[i] = COLOR[i];
-        }
+    memset(leds, 0, n*sizeof(rgb));
 
-        send(leds, n, PIN);
+    for (uint8_t k = 0; k < 3; ++k) {
+        send(COLOR, n, PIN);
         _delay_ms(150);
 
-        blank(leds, n);
+        send(leds, n, PIN);
         _delay_ms(85);
     }
 }
