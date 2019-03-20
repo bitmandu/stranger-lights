@@ -6,3 +6,4 @@
 - xref:upsidedown.adoc[Sending Messages with upsidedown.py]
 - xref:twitter.adoc[Displaying Tweets]
 - xref:license.adoc[License]
+- xref:help.adoc[Help / Issues]
