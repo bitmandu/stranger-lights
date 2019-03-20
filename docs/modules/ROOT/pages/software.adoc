@@ -1,4 +1,5 @@
 = Flashing the software
+:avrdude: https://www.nongnu.org/avrdude/user-manual/avrdude_12.html
 
 == Step 1: Configuration
 
@@ -21,7 +22,7 @@ the LED index for "Z." The LEDs in the strip are numbered from 0 to
 `NLED - 1`.
 
 In my setup, the last LED in the 50 LED strip (LED 49) is above the
-letter "A," so my `MAP` is as follows.
+letter "A," so my `MAP` is set as follows.
 
 [source, c]
 ----
@@ -66,9 +67,19 @@ to update `pins.h`.
 #define PIN PB1
 ----
 
+=== `src/Makefile`
+
+You may need to change the `PROGRAMMER` line in `src/Makefile` to the
+{avrdude}[AVRDUDE name] for your programmer.
+
+[source, Makefile]
+----
+PROGRAMMER = usbasp
+----
+
 == Step 2: Compile the code
 
-Compile with the avr-gcc compiler using `make`.
+Compile with the AVR-GCC compiler using `make`.
 
 [source, shell]
 ----
