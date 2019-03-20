@@ -91,7 +91,7 @@ at 8 MHz. Because 0b11100010 = 0xe2, we want to set LFUSE = 0xe2.
 
 == Step 2: Change the clock speed using avrdude
 
-Use avrdude to set LFUSE = 0xe2 and run the ATmega328 at 8 MHz.
+Use avrdude to set LFUSE = 0xe2 to run the ATmega328 at 8 MHz.
 
 [source, shell]
 ----

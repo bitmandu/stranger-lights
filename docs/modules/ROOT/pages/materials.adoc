@@ -22,7 +22,7 @@
 // https://www.scribd.com/document/345729391/Stranger-Things-Wall-Letters-pdf
 
 IMPORTANT: To use my code, you'll need a WS2811-based LED strip. There
-are several ICs commonly used with LEDs including the WS2811, WS2812,
-and WS2812b, so double-check. To learn more about the different ICs
-being used in LED pixel strips, see {led-control-chips}[Different
+are several LED ICs commonly used with similar names, like WS2811,
+WS2812 and WS2812b, so double-check. To learn more about the different
+ICs being used in LED pixel strips, see {led-control-chips}[Different
 Styles of Pixels].

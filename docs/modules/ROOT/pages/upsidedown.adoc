@@ -7,9 +7,9 @@ command-line.
 
 Any string received by the UART interface of the AVR is displayed.
 (Assuming, you know, everything is working.) You can use whatever
-serial terminal you prefer to send messages. The Linux command
+serial terminal you prefer to send messages — the Linux command
 {screen}[screen] and Python's pySerial {miniterm}[miniterm console]
-are two other options.
+are two options.
 
 .Determine your serial port
 ****
@@ -54,7 +54,7 @@ $ ./upsidedown.py stranger lights
 
 == Flash the LEDs
 
-The special message "~" flashes the LEDs -- warning that the
+The special message "~" flashes the LEDs to warn you that the
 Demogorgon is nearby.
 
 [source, shell]

@@ -39,4 +39,4 @@ $ ./poll
 
 Tweets are retrieved at most every 5 seconds. If no recent tweets are
 found, a random message is displayed or the lights will all flash,
-indicating the Demogorgon is nearby!
+indicating that the Demogorgon is nearby!
