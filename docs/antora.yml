@@ -1,5 +1,5 @@
 name: stranger-lights
 title: Stranger Lights
-version: latest
+version: '1.0'
 nav:
 - modules/ROOT/nav.adoc
