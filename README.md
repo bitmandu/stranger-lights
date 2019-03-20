@@ -17,7 +17,7 @@ This [video shows Stranger Lights in action][youtube].
 Getting Started
 ---------------
 
-An avr-gcc Makefile is provided to compile the flash the source code.
+An AVR-GCC Makefile is provided to compile the flash the source code.
 
     $ make
     $ make flash
@@ -52,8 +52,8 @@ display tweets containing a hashtag.
 Documentation
 -------------
 
-Step-by-step instructions on setting up the hardware and software are
-available in the [documentation][docs].
+More information on the hardware and software is in the
+[documentation][docs].
 
 Help / Issues
 -------------
